@@ -1,16 +1,6 @@
 package org.icestuff.getdown.maven;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.security.GeneralSecurityException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
+import com.threerings.getdown.tools.Digester;
 import org.apache.commons.lang.StringUtils;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.resolver.filter.AndArtifactFilter;
@@ -24,7 +14,16 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.codehaus.plexus.util.DirectoryScanner;
 
-import com.threerings.getdown.tools.Digester;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.security.GeneralSecurityException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Make deployable Java apps.
@@ -43,6 +42,12 @@ public class MakeUpdatesMojo extends AbstractGetdownMojo {
 	 */
 	@Parameter(required = true)
 	private String mainClass;
+
+	/**
+	 * The version of application.
+	 */
+	@Parameter
+	private Long version;
 
 	/**
 	 * The directory in which files will be stored prior to processing.
@@ -321,6 +326,9 @@ public class MakeUpdatesMojo extends AbstractGetdownMojo {
 	protected void makeConfigFile() throws FileNotFoundException {
 		PrintWriter writer = new PrintWriter(new File(workDirectory, "getdown.txt"));
 		try {
+			if(version != null)
+				writer.println(String.format("version = %d", version));
+
 			writer.println("# The URL from which the client is downloaded");
 			writer.println(String.format("appbase = %s", appbase));
 			writer.println(String.format("allow_offline = %s", allowOffline));
