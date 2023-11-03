@@ -49,6 +49,9 @@ public class MakeUpdatesMojo extends AbstractGetdownMojo {
 	@Parameter
 	private Long version;
 
+	@Parameter()
+	private String latest;
+
 	/**
 	 * The directory in which files will be stored prior to processing.
 	 */
@@ -247,6 +250,7 @@ public class MakeUpdatesMojo extends AbstractGetdownMojo {
 			}
 
 			copyResourceSets();
+			makeVersionFile();
 			makeConfigFile();
 			makeDigestFile();
 		} catch (MojoExecutionException e) {
@@ -328,7 +332,8 @@ public class MakeUpdatesMojo extends AbstractGetdownMojo {
 		try {
 			if(version != null)
 				writer.println(String.format("version = %d", version));
-
+			if(latest != null)
+				writer.println(String.format("latest = %s", latest));
 			writer.println("# The URL from which the client is downloaded");
 			writer.println(String.format("appbase = %s", appbase));
 			writer.println(String.format("allow_offline = %s", allowOffline));
@@ -409,6 +414,15 @@ public class MakeUpdatesMojo extends AbstractGetdownMojo {
 			writer.close();
 		}
 	}
+
+	private void makeVersionFile() throws FileNotFoundException {
+		if (version != null) {
+			try (PrintWriter writer = new PrintWriter(new File(workDirectory, "version.txt"))) {
+				writer.println(String.format("%d", version));
+			}
+		}
+	}
+
 
 	@Override
 	protected void writeUIConfiguration(PrintWriter writer) {

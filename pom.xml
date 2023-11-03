@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>io.github.rockfireredmoon</groupId>
+	<groupId>io.github.novalab</groupId>
 	<artifactId>getdown-maven-plugin</artifactId>
 	<packaging>maven-plugin</packaging>
 	<name>Getdown Maven Plugin</name>
@@ -16,30 +16,27 @@
 	<description>Creates deployable, updateable java applications using Getdown (https://github.com/threerings/getdown/).</description>
 
 	<scm>
-		<connection>scm:git:git://github.com/rockfireredmoon/getdown-maven-plugin.git</connection>
-		<developerConnection>scm:git:git@github.com:rockfireredmoon/rockfireredmoon.git</developerConnection>
-		<url>https://github.com/rockfireredmoon/getdown-maven-plugin</url>
+		<connection>scm:git:git://github.com/muhammetceliik/getdown-maven-plugin.git</connection>
+		<developerConnection>scm:git:git@github.com:muhammetceliik/muhammetceliik.git</developerConnection>
+		<url>https://github.com/muhammetceliik/getdown-maven-plugin</url>
 		<tag>HEAD</tag>
 	</scm>
 
 	<developers>
 		<developer>
-			<name>Rockfire Redmoon</name>
-			<email>rockfire.redmoon@gmail.com</email>
-			<url>https://github.com/rockfireredmoon</url>
+			<name>Muhammet Celik</name>
+			<email>muhammet.celik@novalab.com.tr</email>
+			<url>https://github.com/muhammetceliik</url>
 		</developer>
 	</developers>
 
 
-	<inceptionYear>2014</inceptionYear>
-	<url>https://github.com/rockfireredmoon/getdown-maven-plugin</url>
+	<inceptionYear>2023</inceptionYear>
+	<url>https://github.com/muhammetceliik/getdown-maven-plugin</url>
 	<organization>
-		<name>Emerald Icemoon</name>
-		<url>https://github.com/rockfireredmoon</url>
+		<name>Muhammet Celik</name>
+		<url>https://github.com/muhammetceliik</url>
 	</organization>
-	<issueManagement>
-		<url>https://github.com/rockfireredmoon/getdown-maven-plugin/issues</url>
-	</issueManagement>
 
 	<licenses>
 		<license>

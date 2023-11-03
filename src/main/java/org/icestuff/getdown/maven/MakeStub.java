@@ -1,13 +1,13 @@
 package org.icestuff.getdown.maven;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 /**
  * Make deployable Java apps.
@@ -19,6 +19,9 @@ public class MakeStub extends AbstractGetdownMojo {
 	 */
 	@Parameter(required = true)
 	private String appbase;
+
+	@Parameter
+	private Long version;
 
 	/**
 	 * The directory in which files will be stored prior to processing.
@@ -54,6 +57,9 @@ public class MakeStub extends AbstractGetdownMojo {
 		getLog().info("Making stub getdown.txt");
 		PrintWriter writer = new PrintWriter(new File(stubWorkDirectory, "getdown.txt"));
 		try {
+			if(version != null)
+				writer.println(String.format("version = %d", version));
+
 			writer.println("# The URL from which the client is downloaded");
 			writer.println(String.format("appbase = %s", appbase));
 			writer.println();
