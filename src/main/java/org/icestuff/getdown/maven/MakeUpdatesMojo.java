@@ -97,6 +97,9 @@ public class MakeUpdatesMojo extends AbstractGetdownMojo {
 	@Parameter(defaultValue = "false")
 	private boolean allowOffline;
 
+	@Parameter(defaultValue = "false")
+	private boolean useAuthentication;
+
 	/**
 	 * The maximum number of downloads allowed to happen at once. Defaults to the
 	 * number of cores in your CPU - 1
@@ -337,6 +340,7 @@ public class MakeUpdatesMojo extends AbstractGetdownMojo {
 			writer.println("# The URL from which the client is downloaded");
 			writer.println(String.format("appbase = %s", appbase));
 			writer.println(String.format("allow_offline = %s", allowOffline));
+			writer.println(String.format("use_authentication = %s", useAuthentication));
 			writer.println();
 			writeUIConfiguration(writer);
 			writer.println();
