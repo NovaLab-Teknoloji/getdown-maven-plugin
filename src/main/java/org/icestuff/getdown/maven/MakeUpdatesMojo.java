@@ -254,7 +254,8 @@ public class MakeUpdatesMojo extends AbstractGetdownMojo {
 
 			copyResourceSets();
 			makeVersionFile();
-			makeConfigFile();
+			makeConfigFile("getdown.txt", true);
+			makeConfigFile("getdown_" + version + ".txt", false);
 			makeDigestFile();
 		} catch (MojoExecutionException e) {
 			throw e;
@@ -330,12 +331,12 @@ public class MakeUpdatesMojo extends AbstractGetdownMojo {
 		}
 	}
 
-	protected void makeConfigFile() throws FileNotFoundException {
-		PrintWriter writer = new PrintWriter(new File(workDirectory, "getdown.txt"));
+	protected void makeConfigFile(String fileName, boolean useLatest) throws FileNotFoundException {
+		PrintWriter writer = new PrintWriter(new File(workDirectory, fileName));
 		try {
 			if(version != null)
 				writer.println(String.format("version = %d", version));
-			if(latest != null)
+			if(useLatest && latest != null)
 				writer.println(String.format("latest = %s", latest));
 			writer.println("# The URL from which the client is downloaded");
 			writer.println(String.format("appbase = %s", appbase));
