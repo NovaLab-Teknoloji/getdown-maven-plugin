@@ -255,7 +255,7 @@ public class MakeUpdatesMojo extends AbstractGetdownMojo {
 			copyResourceSets();
 			makeVersionFile();
 			makeConfigFile("getdown.txt", true);
-			makeConfigFile("getdown_" + version + ".txt", false);
+			makeConfigFile("build.txt", false);
 			makeDigestFile();
 		} catch (MojoExecutionException e) {
 			throw e;
